@@ -1,0 +1,57 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="sun">
+    <meta name="discription" content="EbookStore App">
+    <link rel="icon" type="image/x-icon" href="{{STATIC_PREFIX}}books/img/favicon.ico">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'books/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'books/books.css' %}">
+</head>
+<body>
+    <!--引入jquery.js，bootstrap.js-->
+    <script src="{% static 'books/js/jquery.min.js'%}"></script>
+    <script src="{% static 'books/js/bootstrap.min.js' %}"></script>
+    <!--导航条-->
+    {% include 'books/navbar.html' %}
+    <!--message提示-->
+    {% if messages %}
+        <div class="container alert-message">
+            {% for message in messages %}
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss='alert' aria-lable='Close'><span aria-hidden='true'>&times;</span></button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!--页面主体-->
+    {% block content %}{% endblock %}
+    <!--点击效果-->
+    <script>
+        $("#mynav a").click(function(e){
+         e.preventDefault();
+        $(this).tab('show');
+        })
+    </script>
+    <!--页脚-->
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <div class="container">
+                <a href="#">联系我们</a>
+                <a href="#">招聘信息</a>
+                <a href="#">商家入驻</a>
+                <a href="#">商家后台</a>
+                <div>
+                    营业执照注册号：330106000004 | 网络文化经营许可证：浙网文（2019）0349-21号 | 增值电信业务经营许可证：B2-2011049 | 安全责任书 | 浙公网安备
+                    33010602009号
+                </div>
+            </div>          
+        </div>
+    </div>
+</body>
+</html>

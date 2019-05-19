@@ -1,0 +1,31 @@
+{% extends 'books/base.html' %}
+{% block title %}登录-sunの书屋{% endblock %}
+{% block content %}
+<div class="container container-small">
+    <h1>登录
+      <small>没有账号？<a href="{% url 'users:register' %}">注册</a></small>
+    </h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      <div class="checkbox">
+        <label>
+        {{ form.login_auto }}自动登录
+        </label>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit">登录</button>
+      </div>
+      <div class="form-group">
+        <a href="#">忘记密码？</a>
+      </div>
+    </form>
+ </div>
+{% endblock %}

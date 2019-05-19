@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import platform
+# 更换默认的数据库连接
+import pymysql
 
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,14 +27,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ij-+r18@t(lmur7yw4jo8omiz%b22bossr&w$u06sen40)^v%t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#生产环境中关闭debug模式
+if platform.system()=='Windows':
+    DEBUG = True
+else:
+    DEBUG = False
 
+#ALLOWED_HOSTS = ['127.0.0.1','localhost','.bookstore.com']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
+    'books.apps.BooksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +64,7 @@ ROOT_URLCONF = 'ebookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,6 +94,18 @@ DATABASES = {
     }
 }
 
+#邮件配置
+EMAIL_USE_SSL = True
+
+EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
+
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = '2436265592@qq.com'#environ.get("EMAIL_SENDER") # 帐号
+
+EMAIL_HOST_PASSWORD = 'fnkdozytekuvebej'#environ.get("EMAIL_PWD")  # 授权码
+# 默认发件人
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -115,10 +137,16 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# 国际时间
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

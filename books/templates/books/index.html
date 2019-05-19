@@ -1,0 +1,25 @@
+{% extends 'books/base.html'%}
+{% load static %}
+{% block title %}首页-sunの书屋{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% include 'books/carousel.html'%}
+        </div>
+        <div id="base-right" class="col-md-4">
+            {% include "books/base_right.html" %}
+        </div>  <!--base-right-->     
+    </div> <!--row-->
+</div> <!--container-->
+<hr>
+
+    <div id="book_row" class="container">
+        <div class="promote-title">python</div>
+        <div class="row">
+            {% include "books/book_list.html" %}
+            {% include "books/book_list.html" %}
+            {% include "books/book_list.html" %}
+        </div>
+    </div>
+{% endblock %}
