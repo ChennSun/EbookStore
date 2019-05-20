@@ -22,12 +22,12 @@
                   <li><a href="#">免费</a></li>
                   <li><a href="#">排行</a></li>
                   <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
                         <li><a href="#">python</a></li>
                         <li><a href="#">linux</a></li>
                         <li><a href="#">Java</a></li>
-                      <li><a href="#">redis</a></li>
+                        <li><a href="#">redis</a></li>
                         <li><a href="#">mysql</a></li>
                         <li><a href="#">docker</a></li>
                         <li><a href="#">html+css+javascript</a></li>
@@ -42,6 +42,29 @@
                     class="glyphicon glyphicon-search"></span>搜索</button>
         </form>
               <ul class="nav navbar-nav navbar-right">
+              <!--用户已登录-->
+              {% if user.is_authenticated %}
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="{{ user.username}},欢迎回来">
+                      <!--用户头像-->
+                      <img class="img-circle user-ico" src='{{ user.authprofile.user_ico.url }}' alt='user_ico.png'><span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                      <li>
+                          <a href="{% url 'users:auth_profile' user.id %}"><span class="glyphicon glyphicon-user"></span>个人资料</a>
+                      </li>
+                      {% if user.is_staff %}
+                      <li>
+                          <a href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-cog"></span>管理后台</a>
+                      </li>
+                      {% endif %}
+                      <li>
+                          <a href="{% url 'users:auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span>退出账号</a>
+                      </li>
+                  </ul>
+              </li>
+              <!--用户未登录-->
+              {% else %}
               <li>
                   <a href="{% url 'users:register' %}">
                     <span class="glyphicon glyphicon-user"></span>&nbsp;注册
@@ -52,8 +75,15 @@
                     <span class="glyphicon glyphicon-log-in"></span>&nbsp;登录
                   </a>
               </li>
+              {% endif %}
           </ul>
            </div> <!--navbar-collapse-->
     </div>  <!--contain-->
   </nav>
- 
+  <!--点击效果-->
+  <script>
+      $("#mynav a").click(function(e){
+       e.preventDefault();//阻止浏览器默认行为
+       $(this).tab("show");
+      })
+  </script>

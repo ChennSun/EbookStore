@@ -14,7 +14,8 @@
 </head>
 <body>
     <!--引入jquery.js，bootstrap.js-->
-    <script src="{% static 'books/js/jquery.min.js'%}"></script>
+    <!--引入jquery3.3.1后，bootstrap某些js效果失效，故使用2.1.1版本-->
+    <script src="{% static 'books/js/jquery-2.1.1.min.js' %}"></script>
     <script src="{% static 'books/js/bootstrap.min.js' %}"></script>
     <!--导航条-->
     {% include 'books/navbar.html' %}
@@ -31,13 +32,6 @@
     {% endif %}
     <!--页面主体-->
     {% block content %}{% endblock %}
-    <!--点击效果-->
-    <script>
-        $("#mynav a").click(function(e){
-         e.preventDefault();
-        $(this).tab('show');
-        })
-    </script>
     <!--页脚-->
     <div class="panel panel-default">
         <div class="panel-footer">

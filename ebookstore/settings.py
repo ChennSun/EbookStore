@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -106,6 +107,9 @@ EMAIL_HOST_USER = '2436265592@qq.com'#environ.get("EMAIL_SENDER") # 帐号
 EMAIL_HOST_PASSWORD = 'fnkdozytekuvebej'#environ.get("EMAIL_PWD")  # 授权码
 # 默认发件人
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# 用户未登录重定向该URL
+LOGIN_URL = '/user/login'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

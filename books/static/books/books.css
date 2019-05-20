@@ -22,8 +22,14 @@ a:hover {
 #base-right h2{
 	font-family: Sans-serif;
 	font-weight: normal;
-	text-align:center;
+	text-align: center;
 
+}
+.user-ico{
+	height: 30px;
+}
+.profile-ico{
+	height: 100px;
 }
 .alert-message{
 	text-align: center;

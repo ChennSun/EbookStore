@@ -1,0 +1,29 @@
+{% extends 'books/base.html'%}
+{% block title %}个人资料-sunの书屋{% endblock %}
+{% block content %}
+
+<div class="container container-small">
+  <div class="list-group">
+    <div class="list-group text-center"><h3 >个人资料</h3></div>
+    <a href="#" class="list-group-item text-center">
+      <img class="img-circle profile-ico" src="{{user.authprofile.user_ico.url}}" alt="user_ico.png">
+    </a>
+    <button type="button" class="list-group-item">
+      <span>用户名：</span>
+      <span>{{ user.username }}</span>
+    </button>
+    <button type="button" class="list-group-item">
+      <span>Email：</span>
+      <span>{{ user.email }}</span>
+    </button>
+    <button type="button" class="list-group-item">
+      <span>生日：</span>
+      <span>{{user.authprofile.birthday}}</span>
+    </button>
+    <button type="button" class="list-group-item">
+      <span>性别：</span>
+      <span>{{ user.authprofile.get_sex_display }}</span>
+    </button>
+  </div>
+</div>
+{% endblock %}

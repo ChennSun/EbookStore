@@ -3,11 +3,14 @@ from django.shortcuts import render,render_to_response,redirect,reverse,HttpResp
 from .forms import LoginForm,RegisterForm
 from django.template import loader
 from django.core.mail import send_mail,EmailMessage
-from ebookstore import settings
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.views import generic
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -22,15 +25,16 @@ def auth_login(request):
                 user=User.objects.get(email=email)
             except User.DoesNotExist:
                 user=None
-            if User is None:
+            if user is None:
                 messages.add_message(request, messages.INFO, '用户名不存在')
+                return render(request,'users/login.html',{'form':login_form})
             username=user.username
             user=authenticate(request,username=username,password=password)
-            if user is not None:
-                login(request,user)
-                return redirect(reverse('books:index'))
-            else:
+            if user is None:
                 messages.add_message(request, messages.INFO, '密码错误')
+                return render(request,'users/login.html',{'form':login_form})
+            login(request,user)
+            return redirect(reverse('books:index'))
     login_form = LoginForm()
     return render(request,'users/login.html',{'form':login_form})
 
@@ -66,6 +70,19 @@ def register(request):
             return render(request,'users/register.html',{'form':register_form})
     register_form = RegisterForm()
     return render(request,'users/register.html',{'form':register_form})
+
+def auth_logout(request):
+    logout(request)
+    return redirect(reverse('books:index'))
+
+
+class ProfileView(generic.DetailView):
+    model=User
+    template_name='users/profile.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 def send_code(request):
     recive=request.POST.get('email',None)
