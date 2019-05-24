@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'xadmin',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -72,7 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
+                'django.template.context_processors.media',#模板中使用media文件路径
             ],
         },
     },
@@ -94,6 +97,33 @@ DATABASES = {
         'PORT':'3306'
     }
 }
+'''
+#设置redis作为缓存
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://192.168.126.129:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+#设置会话类型
+SESSION_ENGINE="django.contrib.sessions.backends.cache"#cached_db
+SESSION_CACHE_ALIAS = "default"
+SESSION_COOKIE_PATH = "/"
+SESSION_COOKIE_DOMAIN = None
+SESSION_SAVE_EVERY_REQUEST = True#每次请求都刷新一次时效
+'''
+#全站缓存
+'''
+MIDDLEWARE_CLASSES = [
+'django.middleware.cache.UpdateCacheMiddleware',
+'django.middleware.common.CommonMiddleware',
+'django.middleware.cache.FetchFromCacheMiddleware',
+]
+'''
 
 #邮件配置
 EMAIL_USE_SSL = True
@@ -108,8 +138,8 @@ EMAIL_HOST_PASSWORD = 'fnkdozytekuvebej'#environ.get("EMAIL_PWD")  # 授权码
 # 默认发件人
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# 用户未登录重定向该URL
-LOGIN_URL = '/user/login'
+# 若用户未登录则重定向该URL
+LOGIN_URL = '/users/login/'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

@@ -1,32 +1,25 @@
 {% load static %}
+
 <div class="col-md-5">
 <div class="col-md-4">
-    <a href="#">
-        <img  class="img-thumbnail img-responsive" src="{% static 'books/img/16.jpg'%}">
+    <a href="{% url 'books:detail' book.id %}">
+        <img class="img-thumbnail" src="{% static 'books/img/15.jpg'%}">
     </a>
 </div>
 <div class="col-md-8">
-    <a href="news.html" class="title">2年前他为教育事业和高圆圆分手，今成这般，高圆圆：我有一句MMP如鲠在喉</a>
-    <div class="info">
-        <span><span class="avatar"><img src="#" ></span>王花花</span> ⋅
-        <span>25k评论</span> ⋅
-        <span>10分钟前</span>
+    <div class="book-name">
+        <h4>书名：<a href="news.html">{{ book.name }}</a></h4>
     </div>
+    <div class="info">
+        <p>{{ book.summary }}</p>
+    </div>
+    <p id="read-button">
+        {% if request.user in book.collect_user.all %}
+        <a href="{% url 'books:collect_book' book.id %}" class="btn btn-info" role="button">取消收藏</a> 
+        {%  else %}
+         <a href="{% url 'books:collect_book' book.id %}" class="btn btn-info" role="button">收藏</a> 
+        {% endif %}
+        <a href="{% url 'books:detail' book.id %}" class="btn btn-info" role="button">阅读</a>
+    </p>
 </div>
 </div>
-
-<!--
-    <div class="container">
-        <div class="promote-title">python</div>
-        <div class="row">
-            <div class="col-md-2">
-                <a href="#">
-                <img  src="{% static 'books/img/django.png'%}" class=" img-responsive img-thumbnail" >
-                </a>
-                <h3>sucnhen </h3>
-                <p>在刚接触到微服务的时候就听说过容器化这个概念，很巧的是，我在公司目前主要负责的事情就是服务容器化，所以前段时间我已经把自己的博客支持了容器化部署，并且已经把服务器上面的虚拟化部署方式切换为容器化部署。</p>
-                <p><a href="#" class="btn btn-danger" role="button">收藏</a> <a href="#" class="btn btn-success" role="button">阅读</a></p>
-            </div>
-        </div>
-     </div>
--->

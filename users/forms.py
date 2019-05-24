@@ -55,10 +55,12 @@ class RegisterForm(forms.Form):
 #            self.add_error('password1','密码最少6位包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符')
         if password1!=password2:
             self.add_error('password2','两次密码不一致')
+        if len(password1)>20:
+            self.add_error('password1','密码不能超过20位')
         return self.cleaned_data
 
-'''单字段判断时，由于判断时涉及字段较多，password1报错之后会删除数据，导致cleaned_data['password']无法提取，影响后续判断
-https://docs.djangoproject.com/en/2.2/ref/forms/validation/#raising-validation-error
+'''单字段判断时，由于判断时涉及字段较多，password1报错之后会清除这条数据，导致cleaned_data['password']无法提取，影响后续判断
+    https://docs.djangoproject.com/en/2.2/ref/forms/validation/#raising-validation-error
     def clean_password2(self):
         password2=self.cleaned_data.get('password2')
         password1=self.cleaned_data.get('password1')

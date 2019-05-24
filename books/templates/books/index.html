@@ -1,23 +1,30 @@
 {% extends 'books/base.html'%}
 {% load static %}
+{% load cache %}
 {% block title %}首页-sunの书屋{% endblock %}
 {% block content %}
+{% cache 3600 main %}
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             {% include 'books/carousel.html'%}
         </div>
-        <div id="base-right" class="col-md-4">
+        <div class="col-md-4  base-right">
             {% include "books/base_right.html" %}
         </div>  <!--base-right-->     
     </div> <!--row-->
 </div> <!--container-->
 <hr>
-
-    <div id="book_row" class="container">
-        <div class="promote-title">python</div>
+<div id="book_row" class="container">
+    {% for tag,books in book_tag_list.items %}
+        <div id='{{tag}}' class="promote-title">{{ tag }}</div><hr>
         <div class="row">
-            {% include "books/book_list.html" %}
-        </div>
-    </div>
+            {% for book in books %}
+                {% include "books/book_list.html" %}
+            {% endfor %}
+        </div>      
+    {% endfor %}
+</div>
+
+{% endcache %}
 {% endblock %}

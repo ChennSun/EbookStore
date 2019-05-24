@@ -5,6 +5,7 @@
     <h1>登录
       <small>没有账号？<a href="{% url 'users:register' %}">注册</a></small>
     </h1>
+    <!--post至本页-->
     <form action="" method="post">
       {% csrf_token %}
       <div class="form-group">

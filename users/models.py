@@ -16,7 +16,6 @@ class AuthProfile(models.Model):
         verbose_name = '用户'
         )
     sex = models.BooleanField(
-        max_length = 4,
         choices = SEX_CHOICES,
         default = 1,
         verbose_name = '性别'

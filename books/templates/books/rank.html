@@ -1,0 +1,13 @@
+{% extends 'books/base.html' %}
+{% block content %}
+	{% with name='rank' %}
+    <div class="container">
+        <div class="promote-title">排行</div><hr>
+        <div class="row">
+            {% for book in rank_list %}
+                {% include 'books/_book.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endwith %}
+{% endblock %}

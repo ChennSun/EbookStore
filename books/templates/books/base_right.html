@@ -1,10 +1,19 @@
-    <h2>热门图书</h2><hr>
-    <ul>
-        <!--{% for book in books %}
-        <li>
-        <a href="#">{{book.name}}</a>作者：<a href="#">{{book.author}}<a><hr><br>
-        </li>
-        {% endfor %}-->
-        <li><a href="#">flask_web开发实战</a>  作者：<a href="#">XXX</a><hr></li>
-        <li><a href="#">flask_web开发实战</a>  作者：<a href="#">XXX</a><hr></li><li><a href="#">flask_web开发实战</a>  作者：<a href="#">XXX</a><hr></li><li><a href="#">flask_web开发实战</a>  作者：<a href="#">XXX</a><hr></li>
-    </ul>
+<div>
+<ul class="media-list">
+    <li class="page-header"><h2>热门图书</h2></li>
+    {% for hot_book in hot_book_list %}
+    <li class="media">
+        <div class="media-left media-middle">
+            <a href="#">
+                <img class="media-object img-right" src="{{ hot_book.book_cover.url }}" alt="book_cover.jpg">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><span class="label label-warning">Hot!</span><a href="#">{{hot_book.name}}</a></h4>
+            <a href="{% url 'books:detail' hot_book.id %}"></a>作者：{{hot_book.author}}
+        </div>
+    </li>
+  
+  {% endfor %}
+</ul>
+</div>

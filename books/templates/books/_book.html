@@ -1,0 +1,15 @@
+<div class="col-md-2 book-page">
+	{% if name == 'rank'%}
+	<span class="label label-danger">{{ forloop.counter }}</span>
+	{% endif %}
+    <a href="{{ book.book_file.url }}">
+        <img  src="{{ book.book_cover.url }}" class=" img-responsive img-thumbnail" >
+    </a>
+    <h3 class="book-name">{{book.name}}</h3>
+    <p>{{book.author}}</p>
+    <p>{{book.publish}}</p>
+    <p>	
+    	<a href="{% url 'books:collect_book' book.id %}" class="btn btn-danger" role="button">收藏<span class="badge">{{book.collect_user.count}}</span></a> 
+    	<a href="{% url 'books:detail' book.id %}" class="btn btn-success" role="button">阅读</a>
+     </p>
+</div>
