@@ -100,6 +100,7 @@ DATABASES = {
     }
 }
 
+'''
 #设置redis作为缓存
 CACHES = {
     "default": {
@@ -119,7 +120,6 @@ SESSION_COOKIE_DOMAIN = None
 SESSION_SAVE_EVERY_REQUEST = True#每次请求都刷新一次时效
 
 #全站缓存
-'''
 MIDDLEWARE_CLASSES = [
 'django.middleware.cache.UpdateCacheMiddleware',
 'django.middleware.common.CommonMiddleware',
