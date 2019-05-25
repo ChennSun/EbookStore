@@ -8,7 +8,7 @@
 </div>
 <div class="col-md-8">
     <div class="book-name">
-        <h4>书名：<a href="news.html">{{ book.name }}</a></h4>
+        <h4>书名：<a href="{% url 'books:detail' book.id %}">{{ book.name }}</a></h4>
     </div>
     <div class="info">
         <p>{{ book.summary }}</p>

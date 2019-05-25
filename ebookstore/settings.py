@@ -28,10 +28,12 @@ SECRET_KEY = 'ij-+r18@t(lmur7yw4jo8omiz%b22bossr&w$u06sen40)^v%t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #生产环境中关闭debug模式
+
 if platform.system()=='Windows':
     DEBUG = True
 else:
     DEBUG = False
+
 
 #ALLOWED_HOSTS = ['127.0.0.1','localhost','.bookstore.com']
 ALLOWED_HOSTS = []
@@ -39,17 +41,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'books.apps.BooksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'xadmin',
-    'crispy_forms'
+    'crispy_forms',
+    'haystack',
+    'users.apps.UsersConfig',
+    'books.apps.BooksConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,7 +99,7 @@ DATABASES = {
         'PORT':'3306'
     }
 }
-'''
+
 #设置redis作为缓存
 CACHES = {
     "default": {
@@ -115,7 +117,7 @@ SESSION_CACHE_ALIAS = "default"
 SESSION_COOKIE_PATH = "/"
 SESSION_COOKIE_DOMAIN = None
 SESSION_SAVE_EVERY_REQUEST = True#每次请求都刷新一次时效
-'''
+
 #全站缓存
 '''
 MIDDLEWARE_CLASSES = [
@@ -124,6 +126,16 @@ MIDDLEWARE_CLASSES = [
 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 '''
+#全文检索框架
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',#语言解析器为jieba分词
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),  # 保存索引文件的地址，选择主目录下，这个会自动生成
+    }
+}
+#数据变动自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 #邮件配置
 EMAIL_USE_SSL = True

@@ -45,7 +45,7 @@ class AllView(generic.ListView):
 
     def get_queryset(self):
         books=Book.objects.all()
-        paginator = Paginator(books,5)
+        paginator = Paginator(books,10)
 
         page=self.request.GET.get('page')
         book = paginator.get_page(page)

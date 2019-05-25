@@ -5,6 +5,8 @@ a:hover {
   text-decoration: none;
   color: #ea6f5a;
 }
+
+/*导航栏*/
 #carousel-example-generic {
 	background: #FFFFFF;
 }
@@ -15,7 +17,19 @@ a:hover {
 	height: 30px;
 	display:inline;
 }
+.user-ico{
+	height: 30px;
+}
+.profile-ico{
+	height: 100px;
+}
 
+.alert-message{
+	text-align: center;
+	font-weight: bold;
+}
+
+/*右侧*/
 .base-right{
 	background: #FFFFFF;
 	height: 350px;
@@ -36,22 +50,14 @@ a:hover {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.user-ico{
-	height: 30px;
-}
-.profile-ico{
-	height: 100px;
-}
-.alert-message{
-	text-align: center;
-	font-weight: bold;
-}
 #base-right ul{
 	text-align: center;
 	list-style-type: none;
 	font-family: 'Microsoft YaHei';
 	font-weight: bold;
 }
+
+/*footer*/
 .panel-footer{
 	text-align: center;
     background: #eee;
@@ -62,6 +68,8 @@ a:hover {
 	color: #999;
     margin-left: 10px;
 }
+
+/*book_list相关页面*/
 .promote-title {
     font-size: 22px;
 }
@@ -101,6 +109,8 @@ a:hover {
 #read-button{
 	text-align: right;
 }
+
+/*登录注册页面*/
 .container-small {
   max-width: 500px;
   background: #FFFFFF;
@@ -117,3 +127,29 @@ a:hover {
   background-color: #d50c37;
   border-color: #d50c37;
 }
+
+/*404页面*/
+.errorpage {
+    margin:30px 15px;
+}
+.errormsg {
+    margin:30px 0;
+    color: #6d6d7b;
+}
+.errormsg h3 {
+    margin:25px 0;
+}
+.errormsg a {
+    text-decoration: none;
+    background:#fff;
+    padding:.6em 1em;
+    color:#FF7150;
+    border: 1px solid #ff7150;
+    border-radius: 2px;
+    line-height: 35px;
+    cursor:pointer;
+}
+.errormsg a:hover {
+    background:#ff7150;
+    padding:.6em 1em;
+    color:#fff;

@@ -4,12 +4,12 @@
     {% for hot_book in hot_book_list %}
     <li class="media">
         <div class="media-left media-middle">
-            <a href="#">
+            <a href="{% url 'books:detail' hot_book.id %}">
                 <img class="media-object img-right" src="{{ hot_book.book_cover.url }}" alt="book_cover.jpg">
             </a>
         </div>
         <div class="media-body">
-            <h4 class="media-heading"><span class="label label-warning">Hot!</span><a href="#">{{hot_book.name}}</a></h4>
+            <h4 class="media-heading"><span class="label label-warning">Hot!</span><a href="{% url 'books:detail' hot_book.id %}">{{hot_book.name}}</a></h4>
             <a href="{% url 'books:detail' hot_book.id %}"></a>作者：{{hot_book.author}}
         </div>
     </li>

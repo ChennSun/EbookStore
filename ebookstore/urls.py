@@ -13,13 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+#from django.contrib import admin
+import xadmin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,re_path,include
 
 urlpatterns = [
-    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^xadmin/', xadmin.site.urls),
+    re_path(r'^search/', include('haystack.urls')),
     path('',include('books.urls')),
     re_path(r'^users/',include('users.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#模板中使用media文件

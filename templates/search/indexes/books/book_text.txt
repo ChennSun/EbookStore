@@ -1,0 +1,11 @@
+#索引字段
+
+#书名索引
+{{ object.name }}
+#作者索引
+{{ object.author }}
+#摘要索引
+{{ object.summary }}
+#类型索引
+{{ object.tag }}
+

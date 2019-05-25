@@ -1,0 +1,44 @@
+{% extends 'books/base.html' %}
+{% block title %}搜索结果-sunの书屋{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="promote-title">当前搜索：{{query}}</div><hr>
+    <div class="row">
+        {% if page%}
+            {% for item in page %}
+                <div class="col-md-2 book-page">
+                    <a href="{{ item.object.book_file.url }}">
+                        <img  src="{{ item.object.book_cover.url }}" class=" img-responsive img-thumbnail" >
+                    </a>
+                    <h3 class="book-name">{{item.object.name}}</h3>
+                    <p>{{item.object.author}}</p>
+                    <p>{{item.object.publish}}</p>
+                    <p> 
+                        <a href="{% url 'books:collect_book' item.object.id %}" class="btn btn-danger" role="button">收藏<span class="badge">{{item.object.collect_user.count}}</span></a> 
+                        <a href="{% url 'books:detail' item.object.id %}" class="btn btn-success" role="button">阅读</a>
+                    </p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3 class='well' style="text-align: center;">检索结果为空</h3>
+        {% endif %}
+    </div>
+    <nav aria-label="...">
+    <ul class="pager">
+        {% if page.has_previous %}
+        <li><a href="?q={{query}}&page={{page.previous_page_number}}">上一页</a></li>
+        {% else %}
+        <li class="disabled"><span>上一页</span></li>
+        {% endif %}
+
+        <li>第{{ page.number }}/{{ paginator.num_pages }}页</li>
+
+        {% if page.has_next %}
+        <li><a href="?q={{query}}&page={{page.next_page_number}}">下一页</a></li>
+        {% else %}
+        <li class="disabled"><span>下一页</span></li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+{% endblock %}
