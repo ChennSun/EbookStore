@@ -51,8 +51,8 @@ class RegisterForm(forms.Form):
         if password1 == email or password1 == username:
             #将错误分配给每个字段，raise方法会返回整个表的错误
             self.add_error('password1','密码不能和用户名或邮箱相同')
-#        if not re.match(r"^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$",password1):
-#            self.add_error('password1','密码最少6位包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符')
+        if not re.match(r"^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$",password1):
+            self.add_error('password1','密码最少6位包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符')
         if password1!=password2:
             self.add_error('password2','两次密码不一致')
         if len(password1)>20:
