@@ -29,7 +29,7 @@ class Book(models.Model):
 #       index
         )
     summary = models.CharField(
-        max_length = 100,
+        max_length = 70,
         verbose_name='摘要'
         )
     publish = models.CharField(
@@ -51,17 +51,23 @@ class Book(models.Model):
         User,
         verbose_name='收藏者'
         )
+    collect_num = models.IntegerField(
+        default=0,
+        verbose_name='收藏数'
+        )
     test_read = models.TextField(
         verbose_name='试读部分'
         )
     book_cover = models.ImageField(
         upload_to='cover/%Y/%m/%d',
         verbose_name = '封面',
+        blank=True,
         default = 'cover/default.jpg'
         )
     book_file = models.FileField(
         upload_to='file/%Y/%m/%d',
         default = 'file/default.txt',
+        blank=True,
         verbose_name = '书籍主体'
         )
 

@@ -30,6 +30,7 @@ class AuthProfile(models.Model):
         default='ico/default.jpg',
 #       height=20,
 #       width=20,
+        blank=True,
         verbose_name = '用户头像'
         )
 

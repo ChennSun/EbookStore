@@ -4,11 +4,12 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import F
 from .models import Book
 
 # Create your views here.
 def index(request):
-    hot_book_list = Book.objects.order_by("-collect_user")[:4]
+    hot_book_list = Book.objects.order_by("-collect_num")[:4]
     book_list = Book.objects
     book_tag_list = {
         'Python':book_list.filter(tag = 'python'),
@@ -30,7 +31,7 @@ class RankView(generic.ListView):
     context_object_name = 'rank_list'
 
     def get_queryset(self):
-        return Book.objects.order_by('-collect_user')[:4]
+        return Book.objects.order_by('-collect_num')[:10]
 
 class FreeView(generic.ListView):
     template_name = 'books/free.html'
@@ -64,10 +65,13 @@ def collect_book(request,id):
     book = Book.objects.get(pk=id)
     if user in book.collect_user.all():
         book.collect_user.remove(user)
+        book.collect_num=F('collect_num')-1
         messages.add_message(request, messages.INFO, '取消收藏')
     else:
         book.collect_user.add(user)
+        book.collect_num=F('collect_num')+1
         messages.add_message(request, messages.INFO, '收藏成功')
+    book.save()
     return redirect(reverse('books:index'))
 
 

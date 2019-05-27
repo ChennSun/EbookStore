@@ -1,5 +1,5 @@
 body {
-	background: #f5f5f5;
+    background: #f5f5f5;
 }
 a:hover {
   text-decoration: none;
@@ -8,64 +8,65 @@ a:hover {
 
 /*导航栏*/
 #carousel-example-generic {
-	background: #FFFFFF;
+    background: #FFFFFF;
 }
 .navbar{
-	background: #FFFFFF;
+    background: #FFFFFF;
 }
 .navbar-brand img{
-	height: 30px;
-	display:inline;
+    height: 30px;
+    display:inline;
 }
 .user-ico{
-	height: 30px;
+    height: 30px;
 }
 .profile-ico{
-	height: 100px;
+    height: 100px;
 }
 
 .alert-message{
-	text-align: center;
-	font-weight: bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 /*右侧*/
 .base-right{
-	background: #FFFFFF;
-	height: 350px;
+    background: #FFFFFF;
+    height: 350px;
 }
 .base-right h2{
-	font-family: Sans-serif;
-	font-weight: normal;
-	text-align: center;
+    font-family: Sans-serif;
+    font-weight: normal;
+    text-align: center;
 }
 .img-right{
-	height: 40px;
-	width: 40px;
-	margin-left: 60px;
+    height: 40px;
+    width: 40px;
+    margin-left: 40px;
 }
 .media-heading{
-	width:70%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    width:250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
 }
 #base-right ul{
-	text-align: center;
-	list-style-type: none;
-	font-family: 'Microsoft YaHei';
-	font-weight: bold;
+    text-align: center;
+    list-style-type: none;
+    font-family: 'Microsoft YaHei';
+    font-weight: bold;
 }
 
 /*footer*/
 .panel-footer{
-	text-align: center;
+    text-align: center;
     background: #eee;
     padding: 50px 0;
     color: #999;
 }
 .panel-footer a{
-	color: #999;
+    color: #999;
     margin-left: 10px;
 }
 
@@ -85,29 +86,28 @@ a:hover {
 }
 
 #book_row{
-	margin-top: 10px;
-	margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #book_row .col-md-5{
-	background: #FFFFFF;
-	margin: 5px 10px 5px 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    background: #FFFFFF;
+    margin: 5px 10px 5px 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .book-page{
-	background: #FFFFFF;
-	margin: 5px 10px 5px 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    background: #FFFFFF;
+    margin: 5px 10px 5px 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .book-name{
-	width:90%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #read-button{
-	text-align: right;
+    text-align: right;
 }
 
 /*登录注册页面*/
