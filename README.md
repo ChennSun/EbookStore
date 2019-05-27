@@ -7,6 +7,7 @@ Ebook store
 - 1.用户注册，登录，用户资料页
 - 2.书籍热度排行，收藏，阅读功能
 - 3.商家后台
+- 4.支持响应式
 - todo:order模块
 目前为了方便使用redis作为缓存及消息中间件，后续消息中间件会改为rabbitMQ实现；
 ![index](https://github.com/ChennSun/myimg/blob/master/django/index.jpg)
