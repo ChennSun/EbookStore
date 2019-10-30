@@ -8,7 +8,7 @@ django-redis==4.10.0
 django-simple-captcha==0.5.11
 kombu==4.5.0
 mysql-connector==2.2.9
-Pillow==6.0.0
+Pillow==6.2.0
 PyMySQL==0.9.3
 pytz==2019.1
 redis==3.2.1
@@ -42,7 +42,7 @@ kombu==4.5.0
 mysql-connector==2.2.9
 odfpy==1.4.0
 openpyxl==2.6.2
-Pillow==6.0.0
+Pillow==6.2.0
 PyMySQL==0.9.3
 pytz==2019.1
 PyYAML==5.1
